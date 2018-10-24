@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>atan与atan2(译 wikipedia) | JOHN&#39;S BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3f74b5">
+    
+    
+    <meta name="keywords" content="数学">
+    <meta name="description" content="概论很多计算机语言都提供了以atan2(y,x)或arctan2(y,x)为名的多值反正切函数。这个函数接受两个参数y和x（不能同时为0，代表X/Y平面中除原点外的任意点(x,y)）。比例y/x为原点到该点的射线与x轴的夹角角&amp;theta;。返回的弧度角封闭在区间(-π,π],并且在y&amp;gt;0时值为正。">
+<meta name="keywords" content="数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="atan与atan2(译 wikipedia)">
+<meta property="og:url" content="http://yoursite.com/2018/01/06/atan与atan2/index.html">
+<meta property="og:site_name" content="JOHN&#39;S BLOG">
+<meta property="og:description" content="概论很多计算机语言都提供了以atan2(y,x)或arctan2(y,x)为名的多值反正切函数。这个函数接受两个参数y和x（不能同时为0，代表X/Y平面中除原点外的任意点(x,y)）。比例y/x为原点到该点的射线与x轴的夹角角&amp;theta;。返回的弧度角封闭在区间(-π,π],并且在y&amp;gt;0时值为正。">
+<meta property="og:image" content="http://yoursite.com/2018/01/06/atan与atan2/Arctangent2.svg">
+<meta property="og:image" content="http://yoursite.com/2018/01/06//atan%E4%B8%8Eatan2/Atan2_argument_sign_graph.svg">
+<meta property="og:image" content="http://yoursite.com/2018/01/06/atan与atan2/f1.svg">
+<meta property="og:image" content="http://yoursite.com/2018/01/06/atan与atan2/f2.svg">
+<meta property="og:image" content="http://yoursite.com/2018/01/06/atan与atan2/f3.svg">
+<meta property="og:image" content="http://yoursite.com/2018/01/06/atan与atan2/f4.svg">
+<meta property="og:updated_time" content="2018-10-24T06:02:47.807Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="atan与atan2(译 wikipedia)">
+<meta name="twitter:description" content="概论很多计算机语言都提供了以atan2(y,x)或arctan2(y,x)为名的多值反正切函数。这个函数接受两个参数y和x（不能同时为0，代表X/Y平面中除原点外的任意点(x,y)）。比例y/x为原点到该点的射线与x轴的夹角角&amp;theta;。返回的弧度角封闭在区间(-π,π],并且在y&amp;gt;0时值为正。">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/06/atan与atan2/Arctangent2.svg">
+    
+        <link rel="alternate" type="application/atom+xml" title="JOHN&#39;S BLOG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Johnny Guan</h5>
+          <a href="mailto:820268662@qq.com" title="820268662@qq.com" class="mail">820268662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/johnnyguan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">atan与atan2(译 wikipedia)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">atan与atan2(译 wikipedia)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-06T05:25:27.000Z" itemprop="datePublished" class="page-time">
+  2018-01-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概论"><span class="post-toc-number">1.</span> <span class="post-toc-text">概论</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#历史与动机"><span class="post-toc-number">2.</span> <span class="post-toc-text">历史与动机</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定义与计算"><span class="post-toc-number">3.</span> <span class="post-toc-text">定义与计算</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-atan与atan2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">atan与atan2(译 wikipedia)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-06 13:25:27" datetime="2018-01-06T05:25:27.000Z"  itemprop="datePublished">2018-01-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="概论"><a href="#概论" class="headerlink" title="概论"></a>概论</h2><p>很多计算机语言都提供了以<em>atan2(y,x)</em>或<em>arctan2(y,x)</em>为名的多值反正切函数。这个函数接受两个参数<em>y</em>和<em>x</em>（不能同时为0，代表<em>X/Y</em>平面中除原点外的任意点<em>(x,y)</em>）。比例<em>y/x</em>为原点到该点的射线与x轴的夹角角<em>&theta;</em>。返回的弧度角封闭在区间(-π,π],并且在<em>y&gt;0</em>时值为正。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/01/06/atan与atan2/Arctangent2.svg" alt="Graph of atan2(y,x) over y/x" title="">
+                </div>
+                <div class="image-caption">Graph of atan2(y,x) over y/x</div>
+            </figure>
+<figure class="image-bubble"><br>    <div class="img-lightbox"><br>        <div class="overlay"></div><br>        <img src="/2018/01/06//atan%E4%B8%8Eatan2/Atan2_argument_sign_graph.svg" alt="Graph of the tangent function from −π to +π with the corresponding signs of y over x" title="" width="450"><br>    </div><br>    <div class="image-caption">Graph of the tangent function from −π to +π with the corresponding signs of y over x</div><br></figure>
+
+<h2 id="历史与动机"><a href="#历史与动机" class="headerlink" title="历史与动机"></a>历史与动机</h2><p><em>atan2</em>函数首先是在计算机编程语言中引入的，但现在它在科学及工程领域也很常用。它至少可以追溯到<strong>FORTRAN</strong>编程语言，现在可以在很多现代编程语言中找到。其中有C语言的math.h 标准库，Java Math库，.NET的System.Math，Python的math模块等。</p>
+<p>接受一个参数的arctangent函数不能直接区分相对方向。例如，从x轴到向量(1,1)的逆时针角，记为 <em>arctan(1/1)</em>，为π/4弧度或45°。然而，x轴与向量(-1,-1)之间的夹角，为<em>arctan(-1/-1)</em>，但却不是π/4弧度。另外。在求x轴与向量(0,y),y≠0的时候，需要计算<em>arctan(y/0)</em>，但是分母不能为0。</p>
+<p>相比之下，<em>arctan2</em>函数可以通过两个变量<em>y</em>和<em>x</em>计算出唯一的反正切值。</p>
+<h2 id="定义与计算"><a href="#定义与计算" class="headerlink" title="定义与计算"></a>定义与计算</h2><p>根据标准反正切函数，<em>arctan2</em>函数可以表示为<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/01/06/atan与atan2/f1.svg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/01/06/atan与atan2/f2.svg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/01/06/atan与atan2/f3.svg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/01/06/atan与atan2/f4.svg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-24T06:02:47.807Z" itemprop="dateUpdated">2018-10-24 14:02:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/06/atan与atan2/" target="_blank" rel="external">http://yoursite.com/2018/01/06/atan与atan2/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Johnny Guan">
+            Johnny Guan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/22/web-animations-api/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">web animations api（译）</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Johnny Guan &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

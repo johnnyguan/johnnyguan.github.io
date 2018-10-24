@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>web-animation-api tutorial2: the animation &amp; timeline controls | JOHN&#39;S BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3f74b5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="由http://danielcwilson.com/blog/2015/07/animations-part-2/  翻译现在我们理解了如何使用Web Animations API，我们再讨论一下状态、控制、回调及时间线。 动画播放状态和控制当调用element.animate()时，会返回一个Animation对象，动画随机开始播放。为了解动画的当前状态，你可以查看只读属性playState，它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web-animation-api tutorial2: the animation &amp; timeline controls">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/web-animation-api-tutorial2-the-animation-timeline-controls/index.html">
+<meta property="og:site_name" content="JOHN&#39;S BLOG">
+<meta property="og:description" content="由http://danielcwilson.com/blog/2015/07/animations-part-2/  翻译现在我们理解了如何使用Web Animations API，我们再讨论一下状态、控制、回调及时间线。 动画播放状态和控制当调用element.animate()时，会返回一个Animation对象，动画随机开始播放。为了解动画的当前状态，你可以查看只读属性playState，它">
+<meta property="og:updated_time" content="2018-10-24T06:02:47.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web-animation-api tutorial2: the animation &amp; timeline controls">
+<meta name="twitter:description" content="由http://danielcwilson.com/blog/2015/07/animations-part-2/  翻译现在我们理解了如何使用Web Animations API，我们再讨论一下状态、控制、回调及时间线。 动画播放状态和控制当调用element.animate()时，会返回一个Animation对象，动画随机开始播放。为了解动画的当前状态，你可以查看只读属性playState，它">
+    
+        <link rel="alternate" type="application/atom+xml" title="JOHN&#39;S BLOG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Johnny Guan</h5>
+          <a href="mailto:820268662@qq.com" title="820268662@qq.com" class="mail">820268662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/johnnyguan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">web-animation-api tutorial2: the animation &amp; timeline controls</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">web-animation-api tutorial2: the animation &amp; timeline controls</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-22T10:49:09.000Z" itemprop="datePublished" class="page-time">
+  2018-01-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#动画播放状态和控制"><span class="post-toc-number">1.</span> <span class="post-toc-text">动画播放状态和控制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#播放速率"><span class="post-toc-number">2.</span> <span class="post-toc-text">播放速率</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完成回调"><span class="post-toc-number">3.</span> <span class="post-toc-text">完成回调</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#时间线"><span class="post-toc-number">4.</span> <span class="post-toc-text">时间线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#另一个选项：reverse"><span class="post-toc-number">5.</span> <span class="post-toc-text">另一个选项：reverse()</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-web-animation-api-tutorial2-the-animation-timeline-controls"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">web-animation-api tutorial2: the animation & timeline controls</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-22 18:49:09" datetime="2018-01-22T10:49:09.000Z"  itemprop="datePublished">2018-01-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>由<a href="http://danielcwilson.com/blog/2015/07/animations-part-2/" target="_blank" rel="noopener">http://danielcwilson.com/blog/2015/07/animations-part-2/</a>  翻译<br>现在我们理解了如何使用Web Animations API，我们再讨论一下状态、控制、回调及时间线。</p>
+<h2 id="动画播放状态和控制"><a href="#动画播放状态和控制" class="headerlink" title="动画播放状态和控制"></a>动画播放状态和控制</h2><p>当调用<em>element.animate()</em>时，会返回一个<em>Animation</em>对象，动画随机开始播放。为了解动画的当前状态，你可以查看只读属性<em>playState</em>，它会返回5个字符串之一。我们也能够通过调用4个方法之一来修改动画的当前状态：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = element.animate(<span class="comment">/* ... */</span>);</span><br><span class="line"><span class="built_in">console</span>.log(player.playState); <span class="comment">//"running"</span></span><br><span class="line"></span><br><span class="line">player.pause(); <span class="comment">//"paused"</span></span><br><span class="line">player.play();  <span class="comment">//"running"</span></span><br><span class="line">player.cancel(); <span class="comment">//"idle"... jump to original state</span></span><br><span class="line">player.finish(); <span class="comment">//"finished"...jump to end state</span></span><br></pre></td></tr></table></figure></p>
+<p>除了<em>running,paused,idle</em>和<em>finished</em>的播放状态，还定义了<em>pending</em>状态，这会在播放状态或暂停状态未决时发生。</p>
+<h2 id="播放速率"><a href="#播放速率" class="headerlink" title="播放速率"></a>播放速率</h2><p>通过<em>playbackRate</em>属性来改变播放速率。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = element.animate(<span class="comment">/* ... */</span>);</span><br><span class="line"><span class="built_in">console</span>.log(player.playbackRate); <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line">player.playbackRate = <span class="number">2</span>; <span class="comment">//double speed, can also be decimal to slow it down.</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="完成回调"><a href="#完成回调" class="headerlink" title="完成回调"></a>完成回调</h2><p>使用CSS过渡，当过渡结束时会触发事件。类似地，<em>Animation</em>会在动画完成或者调用finish()。注意根据规范，无限次循环的动画集是不能终止的，播放率也不能设为0。也有<em>oncancel</em>句柄，以及<em>Animation</em>完成时使用Promise的选项。</p>
+<h2 id="时间线"><a href="#时间线" class="headerlink" title="时间线"></a>时间线</h2><p>每个<em>Animation</em>暴露出两个读/写时间相关的属性–<em>currentTime</em>和<em>startTime</em>。现在我们关注前者。</p>
+<p><em>currentTime</em>返回动画目前的毫秒数。最大值是<em>delay + (duration </em> iterations)*，所以无限循环不会有最大值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = element.animate([</span><br><span class="line">  &#123;<span class="attr">opacity</span>: <span class="number">1</span>&#125;, &#123;<span class="attr">opacity</span>: <span class="number">0</span>&#125;</span><br><span class="line">], &#123;</span><br><span class="line">  duration: <span class="number">1000</span>,</span><br><span class="line">  delay: <span class="number">500</span>,</span><br><span class="line">  iterations: <span class="number">3</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">player.onfinish = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(player.currentTime); <span class="comment">// 3500</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>播放速率会影响到时间线进展的快慢。如果将播放速率设为10，最大currentTime不变，但是整个时间线会缩短为1/10。</p>
+<p>由于<em>currentTime</em>是读/写的，我们可以使用这个跳跃到时间线的某个点。它也可以用来同步两个动画。</p>
+<h2 id="另一个选项：reverse"><a href="#另一个选项：reverse" class="headerlink" title="另一个选项：reverse()"></a>另一个选项：reverse()</h2><p>你也可以使用<em>reverse()</em>来反转一个动画，这与<em>play()</em>相似，但是会逆时间线发展。当动画完成时<em>currentTime</em>会是0。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-24T06:02:47.823Z" itemprop="dateUpdated">2018-10-24 14:02:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/22/web-animation-api-tutorial2-the-animation-timeline-controls/" target="_blank" rel="external">http://yoursite.com/2018/01/22/web-animation-api-tutorial2-the-animation-timeline-controls/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Johnny Guan">
+            Johnny Guan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/22/web-animations-api-tutorial3-multiple-animations/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">web-animations-api-tutorial3-multiple-animations</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/22/web-animation-api-tutorial1-creating-a-basic-animation/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">web-animation-api tutorial1: creating a basic animation</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Johnny Guan &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>web-animation-api tutorial1: creating a basic animation | JOHN&#39;S BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3f74b5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="由http://danielcwilson.com/blog/2015/07/animations-part-1/  翻译 我们已经大致了解了Web Animation API，现在我们深入学习一下真实规范。 WAAPI让你能够比使用CSS动画做更多的控制，我们首先使用这个API做一个基本动画。 构建关键帧动画如果你对CSS过渡/动画熟悉，它看起来会很类似。12345678910111213var">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web-animation-api tutorial1: creating a basic animation">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/web-animation-api-tutorial1-creating-a-basic-animation/index.html">
+<meta property="og:site_name" content="JOHN&#39;S BLOG">
+<meta property="og:description" content="由http://danielcwilson.com/blog/2015/07/animations-part-1/  翻译 我们已经大致了解了Web Animation API，现在我们深入学习一下真实规范。 WAAPI让你能够比使用CSS动画做更多的控制，我们首先使用这个API做一个基本动画。 构建关键帧动画如果你对CSS过渡/动画熟悉，它看起来会很类似。12345678910111213var">
+<meta property="og:updated_time" content="2018-10-24T06:02:47.822Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web-animation-api tutorial1: creating a basic animation">
+<meta name="twitter:description" content="由http://danielcwilson.com/blog/2015/07/animations-part-1/  翻译 我们已经大致了解了Web Animation API，现在我们深入学习一下真实规范。 WAAPI让你能够比使用CSS动画做更多的控制，我们首先使用这个API做一个基本动画。 构建关键帧动画如果你对CSS过渡/动画熟悉，它看起来会很类似。12345678910111213var">
+    
+        <link rel="alternate" type="application/atom+xml" title="JOHN&#39;S BLOG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Johnny Guan</h5>
+          <a href="mailto:820268662@qq.com" title="820268662@qq.com" class="mail">820268662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/johnnyguan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">web-animation-api tutorial1: creating a basic animation</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">web-animation-api tutorial1: creating a basic animation</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-22T05:49:56.000Z" itemprop="datePublished" class="page-time">
+  2018-01-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建关键帧动画"><span class="post-toc-number">1.</span> <span class="post-toc-text">构建关键帧动画</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-web-animation-api-tutorial1-creating-a-basic-animation"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">web-animation-api tutorial1: creating a basic animation</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-22 13:49:56" datetime="2018-01-22T05:49:56.000Z"  itemprop="datePublished">2018-01-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>由<a href="http://danielcwilson.com/blog/2015/07/animations-part-1/" target="_blank" rel="noopener">http://danielcwilson.com/blog/2015/07/animations-part-1/</a>  翻译</p>
+<p>我们已经大致了解了Web Animation API，现在我们深入学习一下真实规范。</p>
+<p>WAAPI让你能够比使用CSS动画做更多的控制，我们首先使用这个API做一个基本动画。</p>
+<h2 id="构建关键帧动画"><a href="#构建关键帧动画" class="headerlink" title="构建关键帧动画"></a>构建关键帧动画</h2><p>如果你对CSS过渡/动画熟悉，它看起来会很类似。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate([</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(1)'</span>, <span class="attr">opacity</span>: <span class="number">1</span>, <span class="attr">offset</span>: <span class="number">0</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.5)'</span>, <span class="attr">opacity</span>: <span class="number">.5</span>, <span class="attr">offset</span>: <span class="number">.3</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.667)'</span>, <span class="attr">opacity</span>: <span class="number">.667</span>, <span class="attr">offset</span>: <span class="number">.7875</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.6)'</span>, <span class="attr">opacity</span>: <span class="number">.6</span>, <span class="attr">offset</span>: <span class="number">1</span> &#125;</span><br><span class="line">  ], &#123;</span><br><span class="line">    duration: <span class="number">700</span>, <span class="comment">//milliseconds</span></span><br><span class="line">    easing: <span class="string">'ease-in-out'</span>, <span class="comment">//'linear', a bezier curve, etc.</span></span><br><span class="line">    delay: <span class="number">10</span>, <span class="comment">//milliseconds</span></span><br><span class="line">    iterations: <span class="literal">Infinity</span>, <span class="comment">//or a number</span></span><br><span class="line">    direction: <span class="string">'alternate'</span>, <span class="comment">//'normal', 'reverse', etc.</span></span><br><span class="line">    fill: <span class="string">'forwards'</span> <span class="comment">//'backwards', 'both', 'none', 'auto'</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>为了对比起见，有一个同等的CSS关键帧动画。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@keyframes emphasis &#123;</span><br><span class="line">  <span class="number">0</span>% &#123;</span><br><span class="line">    transform: scale(<span class="number">1</span>); </span><br><span class="line">    opacity: <span class="number">1</span>; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">30</span>% &#123;</span><br><span class="line">    transform: scale(<span class="number">.5</span>); </span><br><span class="line">    opacity: <span class="number">.5</span>; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">78.75</span>% &#123;</span><br><span class="line">    transform: scale(<span class="number">.667</span>); </span><br><span class="line">    opacity: <span class="number">.667</span>; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100</span>% &#123;</span><br><span class="line">    transform: scale(<span class="number">.6</span>);</span><br><span class="line">    opacity: <span class="number">.6</span>; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">#toAnimate &#123;</span><br><span class="line">  animation: emphasis <span class="number">700</span>ms ease-<span class="keyword">in</span>-out <span class="number">10</span>ms infinite alternate forwards;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们将这个动画分解并对各个部分进行解释。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate()</span><br></pre></td></tr></table></figure></p>
+<p>这个动画会返回一个<em>Animation</em>对象，我们之后会用它做一些有趣的事，因而要用一个变量将其保存。我们找到想要做动画的元素（这里用<em>document.getElementById</em>获取），调用<em>animate</em>函数。这个函数是新加进规范的，所以你需要测试支持性，或者引入polyfill。</p>
+<p><em>animate</em>函数接收两个参数，一个关键帧效果(<em>KeyframeEffect</em>)数组，一个动画效果时间属性（<em>AnimationEffectTimingProperties</em>）选项。从本质上来看，第一个参数映射为你想要再CSS@keyframes中放置的参数，第二个参数则是你想通过<em>animation-</em>属性指定的CSS规则。这里的关键益处在于我们能够使用变量，或者重复使用预先定义的<em>KeyframeEffect</em>，而在CSS中，我们会受限于我们声明的CSS值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate([</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(1)'</span>, <span class="attr">opacity</span>: <span class="number">1</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.5)'</span>, <span class="attr">opacity</span>: <span class="number">.5</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.667)'</span>, <span class="attr">opacity</span>: <span class="number">.667</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.6)'</span>, <span class="attr">opacity</span>: <span class="number">.6</span> &#125;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<p>对于每个<em>KeyframeEffect</em>，我们将CSS中的offset值变为0-1之间的小数offset值。它是可选的，如果你不指定，它们会均匀分布。你也可以指定<em>easing</em>属性，效果与CSS中的<em>animmation-timing-function</em>一致。其它<em>KeyframeEffect</em>中的属性是animate中的属性。每个属性的值应该与你在javascript中使用<em>element.style</em>指定保持一致，所以<em>opacity</em>是数字，<em>transform</em>是字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate([], &#123;</span><br><span class="line">    duration: <span class="number">700</span>, <span class="comment">//milliseconds</span></span><br><span class="line">    easing: <span class="string">'ease-in-out'</span>, <span class="comment">//'linear', a bezier curve, etc.</span></span><br><span class="line">    delay: <span class="number">10</span>, <span class="comment">//milliseconds</span></span><br><span class="line">    iterations: <span class="literal">Infinity</span>, <span class="comment">//or a number</span></span><br><span class="line">    direction: <span class="string">'alternate'</span>, <span class="comment">//'normal', 'reverse', etc.</span></span><br><span class="line">    fill: <span class="string">'forwards'</span> <span class="comment">//'backwards', 'both', 'none', 'auto'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p></p><p data-height="265" data-theme-id="dark" data-slug-hash="eyXdoZ" data-default-tab="css,result" data-user="JOHNNYGUAN" data-embed-version="2" data-pen-title="animation" class="codepen">See the Pen <a href="https://codepen.io/JOHNNYGUAN/pen/eyXdoZ/" target="_blank" rel="noopener">animation</a> by JOHNNY (<a href="https://codepen.io/JOHNNYGUAN" target="_blank" rel="noopener">@JOHNNYGUAN</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-24T06:02:47.822Z" itemprop="dateUpdated">2018-10-24 14:02:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/22/web-animation-api-tutorial1-creating-a-basic-animation/" target="_blank" rel="external">http://yoursite.com/2018/01/22/web-animation-api-tutorial1-creating-a-basic-animation/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Johnny Guan">
+            Johnny Guan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/22/web-animation-api-tutorial2-the-animation-timeline-controls/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">web-animation-api tutorial2: the animation &amp; timeline controls</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/22/web-animations-api/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">web animations api（译）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Johnny Guan &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

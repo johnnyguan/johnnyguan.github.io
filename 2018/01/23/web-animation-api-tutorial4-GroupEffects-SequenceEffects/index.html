@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>web-animation-api tutorial4: GroupEffects &amp; SequenceEffects | JOHN&#39;S BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3f74b5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="由http://danielcwilson.com/blog/2015/09/animations-part-4/  翻译 我们继续讨论Web Animations API下的 multiple animations，实现群组和队列效果。 KeyframeEffects一个KeyframeEffect接收三个参数：需要做动画的元素，keyframe数组以及时间选项。这个新的对象本质上是一个单独动画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web-animation-api tutorial4: GroupEffects &amp; SequenceEffects">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/web-animation-api-tutorial4-GroupEffects-SequenceEffects/index.html">
+<meta property="og:site_name" content="JOHN&#39;S BLOG">
+<meta property="og:description" content="由http://danielcwilson.com/blog/2015/09/animations-part-4/  翻译 我们继续讨论Web Animations API下的 multiple animations，实现群组和队列效果。 KeyframeEffects一个KeyframeEffect接收三个参数：需要做动画的元素，keyframe数组以及时间选项。这个新的对象本质上是一个单独动画">
+<meta property="og:updated_time" content="2018-10-24T06:02:47.824Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web-animation-api tutorial4: GroupEffects &amp; SequenceEffects">
+<meta name="twitter:description" content="由http://danielcwilson.com/blog/2015/09/animations-part-4/  翻译 我们继续讨论Web Animations API下的 multiple animations，实现群组和队列效果。 KeyframeEffects一个KeyframeEffect接收三个参数：需要做动画的元素，keyframe数组以及时间选项。这个新的对象本质上是一个单独动画">
+    
+        <link rel="alternate" type="application/atom+xml" title="JOHN&#39;S BLOG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Johnny Guan</h5>
+          <a href="mailto:820268662@qq.com" title="820268662@qq.com" class="mail">820268662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/johnnyguan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">web-animation-api tutorial4: GroupEffects &amp; SequenceEffects</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">web-animation-api tutorial4: GroupEffects &amp; SequenceEffects</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-23T01:23:34.000Z" itemprop="datePublished" class="page-time">
+  2018-01-23
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#KeyframeEffects"><span class="post-toc-number">1.</span> <span class="post-toc-text">KeyframeEffects</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GroupEffects"><span class="post-toc-number">2.</span> <span class="post-toc-text">GroupEffects</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SequenceEffects"><span class="post-toc-number">3.</span> <span class="post-toc-text">SequenceEffects</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建动画的另一种方式"><span class="post-toc-number">4.</span> <span class="post-toc-text">创建动画的另一种方式</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-web-animation-api-tutorial4-GroupEffects-SequenceEffects"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">web-animation-api tutorial4: GroupEffects & SequenceEffects</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-23 09:23:34" datetime="2018-01-23T01:23:34.000Z"  itemprop="datePublished">2018-01-23</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>由<a href="http://danielcwilson.com/blog/2015/09/animations-part-4/" target="_blank" rel="noopener">http://danielcwilson.com/blog/2015/09/animations-part-4/</a>  翻译</p>
+<p>我们继续讨论Web Animations API下的 <em>multiple animations</em>，实现群组和队列效果。</p>
+<h2 id="KeyframeEffects"><a href="#KeyframeEffects" class="headerlink" title="KeyframeEffects"></a>KeyframeEffects</h2><p>一个KeyframeEffect接收三个参数：需要做动画的元素，keyframe数组以及时间选项。这个新的对象本质上是一个单独动画的蓝图，但我们讨论群组及队列动画的方式时，我们会接触它。它不会启动一个动画，它只是定义一个动画。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elem = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>);</span><br><span class="line"><span class="keyword">var</span> timings = &#123;</span><br><span class="line">  duration: <span class="number">1000</span>,</span><br><span class="line">  fill: <span class="string">'both'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> keyframes = [</span><br><span class="line">  &#123; <span class="attr">opacity</span>: <span class="number">1</span> &#125;.</span><br><span class="line">  &#123; <span class="attr">opacity</span>: <span class="number">0</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> effect = <span class="keyword">new</span> KeyframeEffect(elem, keyframes, timings);</span><br></pre></td></tr></table></figure></p>
+<h2 id="GroupEffects"><a href="#GroupEffects" class="headerlink" title="GroupEffects"></a>GroupEffects</h2><p>虽然没有实现并且在Level1 spec也找不到，polyfill提供一种组合动画并将它们一起播放的方式。<em>GroupEffect</em>（即将在Level2 spec出现）将一个或更多的<em>KeyframeEffect</em>组合，用以同时播放。</p>
+<p><em>GroupEffect</em>接收效果参数（代表多个动画的<em>KeyframeEffect</em>数组）。一旦定义，我们可以播放一组动画。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elem = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>);</span><br><span class="line"><span class="keyword">var</span> elem2 = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate2'</span>);</span><br><span class="line"><span class="keyword">var</span> timings = &#123;</span><br><span class="line">  duration: <span class="number">1000</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> keyframes = [</span><br><span class="line">  &#123; <span class="attr">opacity</span>: <span class="number">1</span> &#125;.</span><br><span class="line">  &#123; <span class="attr">opacity</span>: <span class="number">0</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> kEffects = [</span><br><span class="line">  <span class="keyword">new</span> KeyframeEffect(elem, keyframes, timings),</span><br><span class="line">  <span class="keyword">new</span> KeyframeEffect(elem2, keyframes, timings)</span><br><span class="line">];</span><br><span class="line"><span class="keyword">var</span> group = <span class="keyword">new</span> GroupEffect(kEffects);</span><br><span class="line"><span class="built_in">document</span>.timeline.play(group);</span><br></pre></td></tr></table></figure>
+<h2 id="SequenceEffects"><a href="#SequenceEffects" class="headerlink" title="SequenceEffects"></a>SequenceEffects</h2><p>与<em>GroupEffect</em>类似，<em>SequenceEffect</em>可以将动画一个接一个播放。你也可以一起使用<em>GroupEffect</em>和<em>SequenceEffect</em>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sequence = <span class="keyword">new</span> SequenceEffect(kEffects);</span><br><span class="line"><span class="built_in">document</span>.timeline.play(sequence);</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建动画的另一种方式"><a href="#创建动画的另一种方式" class="headerlink" title="创建动画的另一种方式"></a>创建动画的另一种方式</h2><p>火狐支持另一种方式：<em>Animation</em>构造函数。回顾我们之前的方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> elem = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>);</span><br><span class="line"><span class="keyword">var</span> timings = &#123;</span><br><span class="line">  duration: <span class="number">1000</span>,</span><br><span class="line">  fill: <span class="string">'both'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> keyframes = [</span><br><span class="line">  &#123; <span class="attr">opacity</span>: <span class="number">1</span> &#125;.</span><br><span class="line">  &#123; <span class="attr">opacity</span>: <span class="number">0</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">elem.animate(keyframes, timings);</span><br></pre></td></tr></table></figure></p>
+<p>使用同样的变量，下面的代码与之等价<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> kEffect = <span class="keyword">new</span> KeyframeEffect(elem, keyframes, timings);</span><br><span class="line"><span class="keyword">var</span> player = <span class="keyword">new</span> Animation(kEffect, elem.ownerDocument.timeline);</span><br><span class="line">player.play();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//MDN查找代码如下</span></span><br><span class="line"><span class="keyword">var</span> cats = <span class="built_in">document</span>.querySelectorAll(<span class="string">'.sharedTimelineCat'</span>);</span><br><span class="line">cats = <span class="built_in">Array</span>.prototype.slice.call(cats);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sharedTimeline = <span class="keyword">new</span> DocumentTimeline(&#123; <span class="attr">originTime</span>: <span class="number">500</span> &#125;);</span><br><span class="line"></span><br><span class="line">cats.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">cat</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">var</span> catKeyframes = <span class="keyword">new</span> KeyframeEffect(cat, keyframes, timing);</span><br><span class="line">  <span class="keyword">var</span> catAnimation = <span class="keyword">new</span> Animation(catKeyframes, sharedTimeline);</span><br><span class="line">  catAnimation.play(); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-24T06:02:47.824Z" itemprop="dateUpdated">2018-10-24 14:02:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/23/web-animation-api-tutorial4-GroupEffects-SequenceEffects/" target="_blank" rel="external">http://yoursite.com/2018/01/23/web-animation-api-tutorial4-GroupEffects-SequenceEffects/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Johnny Guan">
+            Johnny Guan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/24/css-motion-paths/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">css motion paths（译）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/22/web-animations-api-tutorial3-multiple-animations/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">web-animations-api-tutorial3-multiple-animations</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Johnny Guan &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

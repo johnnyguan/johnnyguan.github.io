@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>css shapes（译） | JOHN&#39;S BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3f74b5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="由 http://alistapart.com/article/css-shapes-101 翻译 矩形中套矩形：网页通常都是这个构成的。我们通过CSS创造几何形状来打破限制，但那些形状从未影响到被改变形状元素的内部。 1新的CSS Shapes规范改变了这个。在2012年年中由Adobe引入，它的目的是为设计者提供一种新方式来改变在任意复杂形状内部及周围的内容流动。之前不能做到。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css shapes（译）">
+<meta property="og:url" content="http://yoursite.com/2018/01/24/css-shapes/index.html">
+<meta property="og:site_name" content="JOHN&#39;S BLOG">
+<meta property="og:description" content="由 http://alistapart.com/article/css-shapes-101 翻译 矩形中套矩形：网页通常都是这个构成的。我们通过CSS创造几何形状来打破限制，但那些形状从未影响到被改变形状元素的内部。 1新的CSS Shapes规范改变了这个。在2012年年中由Adobe引入，它的目的是为设计者提供一种新方式来改变在任意复杂形状内部及周围的内容流动。之前不能做到。">
+<meta property="og:image" content="http://yoursite.com/2018/01/24/css-shapes/shape-outside-example.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/01/24/css-shapes/shape-rule.png">
+<meta property="og:updated_time" content="2018-10-24T06:02:47.816Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css shapes（译）">
+<meta name="twitter:description" content="由 http://alistapart.com/article/css-shapes-101 翻译 矩形中套矩形：网页通常都是这个构成的。我们通过CSS创造几何形状来打破限制，但那些形状从未影响到被改变形状元素的内部。 1新的CSS Shapes规范改变了这个。在2012年年中由Adobe引入，它的目的是为设计者提供一种新方式来改变在任意复杂形状内部及周围的内容流动。之前不能做到。">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/24/css-shapes/shape-outside-example.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="JOHN&#39;S BLOG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Johnny Guan</h5>
+          <a href="mailto:820268662@qq.com" title="820268662@qq.com" class="mail">820268662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/johnnyguan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">css shapes（译）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">css shapes（译）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-24T03:14:53.000Z" itemprop="datePublished" class="page-time">
+  2018-01-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Creating-a-CSS-Shape"><span class="post-toc-number">1.</span> <span class="post-toc-text">Creating a CSS Shape</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#A-Shape’s-reference-box"><span class="post-toc-number">2.</span> <span class="post-toc-text">A Shape’s reference box</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Defining-Shapes-using-shape-functions"><span class="post-toc-number">3.</span> <span class="post-toc-text">Defining Shapes using shape functions</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Defining-a-shape-using-an-image"><span class="post-toc-number">4.</span> <span class="post-toc-text">Defining a shape using an image</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-css-shapes"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">css shapes（译）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-24 11:14:53" datetime="2018-01-24T03:14:53.000Z"  itemprop="datePublished">2018-01-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>由 <a href="http://alistapart.com/article/css-shapes-101" target="_blank" rel="noopener">http://alistapart.com/article/css-shapes-101</a> 翻译</p>
+<p>矩形中套矩形：网页通常都是这个构成的。我们通过CSS创造<a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="noopener">几何形状</a>来打破限制，但那些形状从未影响到被改变形状元素的内部。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新的CSS Shapes规范改变了这个。在2012年年中由Adobe引入，它的目的是为设计者提供一种新方式来改变在任意复杂形状内部及周围的内容流动。之前不能做到。</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/01/24/css-shapes/shape-outside-example.jpg" alt="Notice how the text wraps around the circular shape of a bowl in this example. Using CSS Shapes, we can create similar designs for the web." title="">
+                </div>
+                <div class="image-caption">Notice how the text wraps around the circular shape of a bowl in this example. Using CSS Shapes, we can create similar designs for the web.</div>
+            </figure>
+<h2 id="Creating-a-CSS-Shape"><a href="#Creating-a-CSS-Shape" class="headerlink" title="Creating a CSS Shape"></a>Creating a CSS Shape</h2><p>你可以使用Shapes的一个属性将shape应用到元素上。你将shape function作为值传给shape 属性。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/01/24/css-shapes/shape-rule.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>形状可以用以下函数中的一个来创建：</p>
+<ul>
+<li>circle()</li>
+<li>ellipse()</li>
+<li>inset()</li>
+<li>polygon()</li>
+</ul>
+<p>接受以上值的形状属性有：</p>
+<ul>
+<li>shape-outside:在形状外包裹内容</li>
+<li>shape-inside:在形状内包裹内容<strong>规范暂时不可使用</strong></li>
+</ul>
+<p>你可以结合<em>shape-margin</em>使用<em>shape-outside</em>，从而在shape外面增加外边距。对一个元素声明形状很简单：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">	<span class="attribute">shape-outside</span>: <span class="built_in">circle</span>(); <span class="comment">/* content will flow around the circle defined on the element */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">	<span class="attribute">shape-outside</span>: <span class="built_in">url</span>(path/to/image-with-shape.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然而还需要两个条件：</p>
+<ol>
+<li>元素必须是浮动的。</li>
+<li>元素必须有内在维度（宽高）。<br>所以例子如下：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">	<span class="attribute">float</span>: left;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">10em</span>;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">15em</span>;</span><br><span class="line">	<span class="attribute">shape-outside</span>: <span class="built_in">circle</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="A-Shape’s-reference-box"><a href="#A-Shape’s-reference-box" class="headerlink" title="A Shape’s reference box"></a>A Shape’s reference box</h2><p>CSS Shape 是在参考盒中定义和创建的，用于在元素上绘制形状。除了元素的高度和宽度，元素的盒模型–margin box,content box,padding box及border box也用于作为指定元素形状边界的参考。</p>
+<p>默认，margin box用于作为参考，所以如果一个元素在底部有外边距，你在元素上定义的形状将触及margin 区域的边界，而不是border区域。如果你想要用其它的box值，你可以结合shape function指定shape属性：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">shape-outside</span>: <span class="selector-tag">circle</span>(250<span class="selector-tag">px</span> <span class="selector-tag">at</span> 50% 50%) <span class="selector-tag">padding-box</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Defining-Shapes-using-shape-functions"><a href="#Defining-Shapes-using-shape-functions" class="headerlink" title="Defining Shapes using shape functions"></a>Defining Shapes using shape functions</h2><p></p><p data-height="265" data-theme-id="dark" data-slug-hash="KZjKEq" data-default-tab="result" data-user="JOHNNYGUAN" data-embed-version="2" data-pen-title="KZjKEq" class="codepen">See the Pen <a href="https://codepen.io/JOHNNYGUAN/pen/KZjKEq/" target="_blank" rel="noopener">KZjKEq</a> by JOHNNY (<a href="https://codepen.io/JOHNNYGUAN" target="_blank" rel="noopener">@JOHNNYGUAN</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="Defining-a-shape-using-an-image"><a href="#Defining-a-shape-using-an-image" class="headerlink" title="Defining a shape using an image"></a>Defining a shape using an image</h2><p>使用图像作为形状，这个图像需要有alpha通道，从而浏览器可以提取形状。<br>形状是由alpha值大于某一阈值的像素构成的。阈值默认是0.0（完全透明），你也可以通过<em>shape-image-shreshold</em>属性进行更改。</p>
+<p>使用<em>url()</em>值指定<em>shape-outside</em>属性，我们可以将内容围绕在该形状周围。</p>
+<div class="demo"><br>    <div style="width:64px; height:64px; float:left; background:blue; shape-outside: url(hot.png); mask-image:url(hot.png);-webkit-mask-image:url(hot.png)"></div><p style="margin: 0;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum itaque nam blanditiis eveniet enim eligendi quae adipisci?</p><p style="margin: 0;">Assumenda blanditiis voluptas tempore porro quibusdam beatae deleniti quod asperiores sapiente dolorem error! Quo nam quasi soluta reprehenderit laudantium optio ipsam ducimus consequatur enim fuga quibusdam mollitia nesciunt modi.</p><br></div>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-24T06:02:47.816Z" itemprop="dateUpdated">2018-10-24 14:02:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/24/css-shapes/" target="_blank" rel="external">http://yoursite.com/2018/01/24/css-shapes/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Johnny Guan">
+            Johnny Guan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/07/addEventListener/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">addEventListener</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/24/css-motion-paths/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">css motion paths（译）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Johnny Guan &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

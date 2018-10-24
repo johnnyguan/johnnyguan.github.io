@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>addEventListener passive选项 | JOHN&#39;S BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3f74b5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="摘自 http://blog.csdn.net/dj0379/article/details/52883315  前文已经提过addEventListener有一个passive选项可以改善滚屏性能，本文将研究其中的原理。 当属性passive值为true的时候，Chrome称之为passive event listener。目前passive event listener支持mousewheel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="addEventListener passive选项">
+<meta property="og:url" content="http://yoursite.com/2018/02/07/addEventListener-passive选项/index.html">
+<meta property="og:site_name" content="JOHN&#39;S BLOG">
+<meta property="og:description" content="摘自 http://blog.csdn.net/dj0379/article/details/52883315  前文已经提过addEventListener有一个passive选项可以改善滚屏性能，本文将研究其中的原理。 当属性passive值为true的时候，Chrome称之为passive event listener。目前passive event listener支持mousewheel">
+<meta property="og:image" content="http://yoursite.com/2018/02/07/addEventListener-passive选项/single.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/07/addEventListener-passive选项/compositor.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/07/addEventListener-passive选项/gesture_event.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/07/addEventListener-passive选项/compatibility.png">
+<meta property="og:image" content="http://yoursite.com/2018/02/07/addEventListener-passive选项/dispatch.png">
+<meta property="og:updated_time" content="2018-10-24T06:02:47.796Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="addEventListener passive选项">
+<meta name="twitter:description" content="摘自 http://blog.csdn.net/dj0379/article/details/52883315  前文已经提过addEventListener有一个passive选项可以改善滚屏性能，本文将研究其中的原理。 当属性passive值为true的时候，Chrome称之为passive event listener。目前passive event listener支持mousewheel">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/07/addEventListener-passive选项/single.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="JOHN&#39;S BLOG" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Johnny Guan</h5>
+          <a href="mailto:820268662@qq.com" title="820268662@qq.com" class="mail">820268662@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/johnnyguan" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">addEventListener passive选项</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">addEventListener passive选项</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-07T06:58:55.000Z" itemprop="datePublished" class="page-time">
+  2018-02-07
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为何需要passive-event-listener"><span class="post-toc-number">1.</span> <span class="post-toc-text">为何需要passive event listener</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Chrome浏览器相关概念"><span class="post-toc-number">2.</span> <span class="post-toc-text">Chrome浏览器相关概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Chrome浏览器的线程化渲染框架"><span class="post-toc-number">3.</span> <span class="post-toc-text">Chrome浏览器的线程化渲染框架</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-addEventListener-passive选项"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">addEventListener passive选项</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-07 14:58:55" datetime="2018-02-07T06:58:55.000Z"  itemprop="datePublished">2018-02-07</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>摘自 <a href="http://blog.csdn.net/dj0379/article/details/52883315" target="_blank" rel="noopener">http://blog.csdn.net/dj0379/article/details/52883315</a> </p>
+<p>前文已经提过<em>addEventListener</em>有一个passive选项可以改善滚屏性能，本文将研究其中的原理。</p>
+<p>当属性<em>passive</em>值为true的时候，Chrome称之为<strong>passive event listener</strong>。目前passive event listener支持mousewheel/touch相关事件。</p>
+<h2 id="为何需要passive-event-listener"><a href="#为何需要passive-event-listener" class="headerlink" title="为何需要passive event listener"></a>为何需要passive event listener</h2><p>Passive Event Listeners特性是为了提高页面的滑动流畅度而设计的，页面滑动流畅度的提升，直接影响到用户对这个页面最直观的感受。Facebook之前做了一项试验，他们将页面滑动的响应刷新率从60FPS降低到30FPS的时候，发现用户的参与度急速下降。</p>
+<h2 id="Chrome浏览器相关概念"><a href="#Chrome浏览器相关概念" class="headerlink" title="Chrome浏览器相关概念"></a>Chrome浏览器相关概念</h2><ol>
+<li>绘制（Paint）：将绘制操作转换为图像（软件模式经过光栅化生成位图，硬件模式经过光栅化生成纹理）。在Chrome中，绘制分为两部分：绘制操作记录部分（main-thread side）和绘制实现部分（impl-side）。绘制记录部分将绘制操作记录到SKPicture，绘制实现部分将SKPicture进行光栅化转成图像。</li>
+<li>图层（Paint Layer）：在Chrome中，页面的绘制是分层绘制的，页面内容变化的时候，浏览器仅需要重新绘制内容变化的图层，没有变化的图层不需要重新绘制。</li>
+<li>合成（Composite）：将绘制好的图层图像混合在一起生产一张最终的图像显示在屏幕上。</li>
+<li>渲染（Render）：可以简单认为渲染等价于绘制+合成。</li>
+<li>UI线程（UI Thread）：浏览器主线程，负责接收系统派发给浏览器窗口的事件、资源下载等。</li>
+<li>内核线程（Main/Render Thread）:Blink内核及V8引擎运行的线程，如DOM树构建、元素布局、绘制操作记录部分（main-thread side）、javascript执行逻辑等。</li>
+<li>合成线程（Compositor Thread）：负责图像的合成，如绘制实现部分（impl-side）、合成等。</li>
+</ol>
+<h2 id="Chrome浏览器的线程化渲染框架"><a href="#Chrome浏览器的线程化渲染框架" class="headerlink" title="Chrome浏览器的线程化渲染框架"></a>Chrome浏览器的线程化渲染框架</h2><p>传统单线程渲染框架，内核线程包揽页面内容渲染的所有工作，如javascript执行，元素布局，图层绘制，图层图像合成等。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/02/07/addEventListener-passive选项/single.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>这种框架有两个明显的问题：</p>
+<ol>
+<li>流水线的执行方式，后面的工作必须等待前面工作执行完成才能处理，无法将相互独立的工作并行处理；</li>
+<li>内核线程负责的工作太多且耗时，一旦遇上内核在执行耗时较长的工作，用户的输入事件将无法立即得到响应。</li>
+</ol>
+<p>对于第一个问题，浏览器很难控制页面从内容变化到布局渲染整个过程的耗时，中间任何一项工作的执行都可能导致整体过程耗时变大，过大的耗时会导致页面内容的刷新率偏低，从而形成视觉上的卡顿。浏览器收到VSync中断信号通知的时候，意味着页面需要立即对内容进行渲染，如果内核线程可能还在执行业务javascript，页面渲染的内容无法立即开始，如果页面无法再下一个VSync中断信号到来之前完成对内容的渲染，则页面会出现丢帧，出现视觉体验的卡顿。</p>
+<p><code>注：VSync信号中断的频率，一般跟设备屏幕的刷新率对齐，比如设备的刷新率为60FPS（Frame Per Second）,
+那么大概16.67ms会触发一下VSync中断信号。Chrome浏览器和Android系统等都是通过VSync中断信号来通知页面启动内容的渲染。</code><br>为了优化第一个问题，Chrome浏览器对内核线程负责的工作进行拆分，通过多线程并发处理提高渲染效率减少丢帧，如内核线程仅负责DOM树构建、元素的布局、图层绘制记录部分（main-thread side）、javascript执行，图层绘制实现部分（impl-side）、图层图像合成则交给合成线程负责处理。这种多线程负责页面内容的渲染框架，在Chrome中称为线程化渲染框架（Threaded Compositor Architecture）。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/02/07/addEventListener-passive选项/compositor.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>如上图所示，在Chrome的线程化渲染框架中，当内核线程完成第一帧的布局和记录绘制操作时，立即通知合成线程对第一帧进行渲染，然后内核线程就开始准备第2帧的布局和记录绘制操作。由此可以看出，内核线程在进行N+1帧的布局和记录绘制操作的同时，合成线程也在努力进行第N帧的渲染并交给屏幕展示。这里利用了CPU多核的特性进行并发处理，提高了页面的渲染效率。用户看到的页面内容是上一帧的内容快照，新的一帧还在处理中。</p>
+<p>要优化第2个问题，对浏览器来说是非常困难的。只要输入事件要在内核线程执行逻辑，那么遇到内核线程在忙，必然无法立即得到响应。如用户的大部分输入事件都跟页面元素有关系，一旦页面元素注册了对应事件的监听器，监听器的逻辑代码（javascript）必须在内核线程中执行，这种输入事件经常无法立即得到响应。</p>
+<p>有一些输入事件是可以不经过内核线程就能被快速处理的。在Chrome中，这类可以不经过内核线程就能快速处理的输入事件为手势输入事件（滑动、捏合），手势输入事件是由用户连续的普通输入事件组合产生，如连续的mousewheel/touchmove事件可能会生成GestureScrollBegin/GestrueScrollUpdate等手势事件。手势输入事件可以直接在已经渲染好的内容快照上操作，如滑动手势事件，直接对页面已经渲染好的内容快照进行滑动展示即可。由于线程化渲染框架的支持，手势输入事件可以不经过内核线程，直接有合成线程在内容快照上直接处理，所以即使此时内核线程在忙碌，用户的手势输入事件也可以马上得到响应。小demo可以验证Chrome的这个特性：如在一个有滚动条的页面内通过javascript执行一段死循环的代码（while-true），尝试上下滑动页面，你会发现此时页面仍能流畅地滑动。<br><code>注：感觉这段有问题。亲测在chrome中js加入死循环，页面卡死，页面并不会正常滚动。另外从MDN查询手势事件（GestureEvent），chrome并不支持手势事件。</code><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/02/07/addEventListener-passive选项/gesture_event.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/02/07/addEventListener-passive选项/compatibility.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>在事件处理函数中加入占用内核线程的代码，在没有passive选项的情况下，页面滚动会有卡顿，而在passive为true的时候，页面滚动并不会受事件处理函数复杂度的影响。如下图所示，passive为true的时候，处理器滚动与事件处理函数不是串行的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/02/07/addEventListener-passive选项/dispatch.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-24T06:02:47.796Z" itemprop="dateUpdated">2018-10-24 14:02:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/02/07/addEventListener-passive选项/" target="_blank" rel="external">http://yoursite.com/2018/02/07/addEventListener-passive选项/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="Johnny Guan">
+            Johnny Guan
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/09/collapse-margin/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">collapse margin</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/07/addEventListener/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">addEventListener</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Johnny Guan &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
