@@ -13,23 +13,25 @@
     
     
     
-    <title>web animations api（译） | JOHN&#39;S BLOG</title>
+    <title>cordova | JOHN&#39;S BLOG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3f74b5">
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="由http://danielcwilson.com/blog/2015/07/animations-intro/ 翻译 Let’s talk about the Web Animations API在2014年夏天，谷歌在网上通过Polymer宣告Material design..使用了即将来临的Web Animations API标准的polyfill。 我从未听过这个API，但是我被吸引了，尤">
+    <meta name="description" content="Cordova初探Cordova是什么？Apache Cordova是开源移动端开发框架。它允许你使用标准的web技术 – HTML5,CSS3和JavaScript来跨平台开发。应用在与针对各平台（android,ios等）的容器中运行，可以使用与标准兼容的API来访问各个设备（如传感器、网络状态等） Cordova的结构cordova 应用由多个部分组成。如下图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="web animations api（译）">
-<meta property="og:url" content="http://yoursite.com/2018/01/22/web-animations-api/index.html">
+<meta property="og:title" content="cordova">
+<meta property="og:url" content="http://yoursite.com/2018/10/24/cordova/index.html">
 <meta property="og:site_name" content="JOHN&#39;S BLOG">
-<meta property="og:description" content="由http://danielcwilson.com/blog/2015/07/animations-intro/ 翻译 Let’s talk about the Web Animations API在2014年夏天，谷歌在网上通过Polymer宣告Material design..使用了即将来临的Web Animations API标准的polyfill。 我从未听过这个API，但是我被吸引了，尤">
-<meta property="og:updated_time" content="2018-10-24T06:02:47.825Z">
+<meta property="og:description" content="Cordova初探Cordova是什么？Apache Cordova是开源移动端开发框架。它允许你使用标准的web技术 – HTML5,CSS3和JavaScript来跨平台开发。应用在与针对各平台（android,ios等）的容器中运行，可以使用与标准兼容的API来访问各个设备（如传感器、网络状态等） Cordova的结构cordova 应用由多个部分组成。如下图">
+<meta property="og:image" content="https://cordova.apache.org/static/img/guide/cordovaapparchitecture.png">
+<meta property="og:updated_time" content="2018-10-24T07:48:58.590Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="web animations api（译）">
-<meta name="twitter:description" content="由http://danielcwilson.com/blog/2015/07/animations-intro/ 翻译 Let’s talk about the Web Animations API在2014年夏天，谷歌在网上通过Polymer宣告Material design..使用了即将来临的Web Animations API标准的polyfill。 我从未听过这个API，但是我被吸引了，尤">
+<meta name="twitter:title" content="cordova">
+<meta name="twitter:description" content="Cordova初探Cordova是什么？Apache Cordova是开源移动端开发框架。它允许你使用标准的web技术 – HTML5,CSS3和JavaScript来跨平台开发。应用在与针对各平台（android,ios等）的容器中运行，可以使用与标准兼容的API来访问各个设备（如传感器、网络状态等） Cordova的结构cordova 应用由多个部分组成。如下图">
+<meta name="twitter:image" content="https://cordova.apache.org/static/img/guide/cordovaapparchitecture.png">
     
         <link rel="alternate" type="application/atom+xml" title="JOHN&#39;S BLOG" href="/atom.xml">
     
@@ -110,7 +112,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">web animations api（译）</div>
+        <div class="flex-col header-title ellipsis">cordova</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -128,11 +130,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">web animations api（译）</h1>
+        <h1 class="title">cordova</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-01-22T02:36:38.000Z" itemprop="datePublished" class="page-time">
-  2018-01-22
+                <time datetime="2018-10-24T06:24:14.000Z" itemprop="datePublished" class="page-time">
+  2018-10-24
 </time>
 
 
@@ -151,17 +153,17 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Let’s-talk-about-the-Web-Animations-API"><span class="post-toc-number">1.</span> <span class="post-toc-text">Let’s talk about the Web Animations API</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是Web-Animation-API"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是Web Animation API</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#让我们加一些新东西来解决问题"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">让我们加一些新东西来解决问题</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Cordova初探"><span class="post-toc-number">1.</span> <span class="post-toc-text">Cordova初探</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Cordova是什么？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Cordova是什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Cordova的结构"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Cordova的结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#WebView"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">WebView</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Web-App"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">Web App</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Plugins"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">Plugins</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装搭建及遇到的问题"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">安装搭建及遇到的问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成App"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">生成App</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Cordova-App更新问题"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">Cordova App更新问题</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
-<article id="post-web-animations-api"
+<article id="post-cordova"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">web animations api（译）</h1>
+        <h1 class="post-card-title">cordova</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-01-22 10:36:38" datetime="2018-01-22T02:36:38.000Z"  itemprop="datePublished">2018-01-22</time>
+            <time class="post-time" title="2018-10-24 14:24:14" datetime="2018-10-24T06:24:14.000Z"  itemprop="datePublished">2018-10-24</time>
 
             
 
@@ -174,24 +176,37 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>由<a href="http://danielcwilson.com/blog/2015/07/animations-intro/" target="_blank" rel="noopener">http://danielcwilson.com/blog/2015/07/animations-intro/</a> 翻译</p>
-<h1 id="Let’s-talk-about-the-Web-Animations-API"><a href="#Let’s-talk-about-the-Web-Animations-API" class="headerlink" title="Let’s talk about the Web Animations API"></a>Let’s talk about the Web Animations API</h1><p>在2014年夏天，谷歌在网上通过Polymer宣告Material design..使用了即将来临的Web Animations API标准的polyfill。</p>
-<p>我从未听过这个API，但是我被吸引了，尤其是因为它讨论了MotionPath效果。它还没有完成，但是它提供一种统一CSS、JS和SVG方式来做动画的目的吸引了我。一年后，谷歌和火狐开始实现该标准，polyfill的进程也已经稳定，是时候认真地看待它了。</p>
-<p>但是很少有人讨论WAAPI！我希望现在通过写一系列文章，突出它在浏览器中的特色，探索我们为什么想要这个API，搞清楚它们的细微差别。</p>
-<h2 id="什么是Web-Animation-API"><a href="#什么是Web-Animation-API" class="headerlink" title="什么是Web Animation API"></a>什么是Web Animation API</h2><p>我们通过弄清它是什么及它想要实现什么来开始这次探索。</p>
-<p>动画在过去5年进展很好，有很好的CSS支持以及对javascript的支持。但是在它们提供很多好处的同时，仍然有大量的缺点。</p>
-<ul>
-<li>CSS拥有对于平滑过渡的硬件加速，并且是内置于浏览器中的。但是它的规则是在CSS中声明，需要很费劲的使用javascript来动态改变值。</li>
-<li><em>requestAnimationFrame</em>拥有很好的支持，会让浏览器优化何时开始动画，但它仍然可能在有大量其它js运行的时候挂起。它也需要更多的数学来倒计时。</li>
-<li><em>setInterval</em>将很多开发者引入到动画中，但它是不精确的，也会导致不流畅的动画。</li>
-<li><em>jQuery.animate()</em>将其它一些开发者带入动画，但通常会有性能问题。</li>
-<li>诸如Velocity和GreenSock(GSAP)提升了js性能，并且在很多场景下测试显示为最佳。但是，它们需要维护并且引入外部库。</li>
-</ul>
-<p>通常来说，我们喜欢浏览器尽可能支持并且由浏览器进行优化。浏览器现在有<em>document.querySelector</em>，因为我们看到jQuery提供这种选择DOM元素的方式。所以库中的功能被迁移到浏览器中。理想情况，我们能够将尽可能多的动画控制放在浏览器层面。这些库就可以专注于新特性，然后良性循环。</p>
-<p>Web Animation API致力于此。它旨在带来CSS性能方面的能力，加上js的便利和灵活性。</p>
-<h2 id="让我们加一些新东西来解决问题"><a href="#让我们加一些新东西来解决问题" class="headerlink" title="让我们加一些新东西来解决问题"></a>让我们加一些新东西来解决问题</h2><p>在前一份工作，我们收到一份邮件，说他们知道我们在公司事务方面有太多的地方需要查看 – email，办公室监视器，Yammer， Google Chat及intranet/wiki。为解决这个问题，他们加了一个博客。</p>
-<p>当我第一次听到Web Animation API的时候，我的想法和我听到我公司要加博客时一样 – 它只会让事情变得更糟。这个博客没有中心化任何事物，它仅仅是额外增加了我们要查看新闻的地方，然后它死掉了。</p>
-<p>但是这个感觉是不一样的。规范展示了它的关注点。它不是为了替代已有的行为，而是要统一。语法类似CSS，但是增加了变量、控制和完成回调的选项。</p>
+            <h1 id="Cordova初探"><a href="#Cordova初探" class="headerlink" title="Cordova初探"></a>Cordova初探</h1><h2 id="Cordova是什么？"><a href="#Cordova是什么？" class="headerlink" title="Cordova是什么？"></a>Cordova是什么？</h2><p>Apache Cordova是开源移动端开发框架。它允许你使用标准的web技术 – HTML5,CSS3和JavaScript来跨平台开发。应用在与针对各平台（android,ios等）的容器中运行，可以使用与标准兼容的API来访问各个设备（如传感器、网络状态等）</p>
+<h2 id="Cordova的结构"><a href="#Cordova的结构" class="headerlink" title="Cordova的结构"></a>Cordova的结构</h2><p>cordova 应用由多个部分组成。如下图<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://cordova.apache.org/static/img/guide/cordovaapparchitecture.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h3 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h3><p>为应用提供所有用户接口，可以理解为浏览器</p>
+<h3 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h3><p>即应用代码，html文件放在这里</p>
+<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>使得有能力通过js调用native code的能力</p>
+<h2 id="安装搭建及遇到的问题"><a href="#安装搭建及遇到的问题" class="headerlink" title="安装搭建及遇到的问题"></a>安装搭建及遇到的问题</h2><p>1.全局安装cordova</p>
+<p>npm install -g cordova </p>
+<p>2.创建项目</p>
+<p>cordova create hello com.example.hello HelloWorld</p>
+<p>3.添加平台(以安卓为例)</p>
+<p>cordova platform add android</p>
+<p>4.环境检查</p>
+<p>cordova requirements</p>
+<p>问题：</p>
+<p>a.Android SDK uninstalled</p>
+<p>解决办法：下载android studio, 安装过程最好有vpn，这样不会有莫名其妙的问题</p>
+<p>b.Android target问题</p>
+<p>解决办法：在android studio中打开SDK Manager找到对应的target安装好</p>
+<h2 id="生成App"><a href="#生成App" class="headerlink" title="生成App"></a>生成App</h2><p>cordova build</p>
+<h2 id="Cordova-App更新问题"><a href="#Cordova-App更新问题" class="headerlink" title="Cordova App更新问题"></a>Cordova App更新问题</h2><p>可以使用cordova-hot-code-push-plugin热更新</p>
+<p>使用方法：</p>
+<p>1.添加插件： cordova plugin add cordova-hot-code-push-plugin</p>
+<p>2.全局安装: npm install -g cordova-hot-code-push-cli</p>
+<p>3.在服务器可访问路径下创建一个目录，比如：hotcode </p>
+<p>4.在项目的根目录下新建一个cordova-hcp.json的文件添加以下内容</p>
 
         </div>
 
@@ -199,12 +214,12 @@
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2018-10-24T06:02:47.825Z" itemprop="dateUpdated">2018-10-24 14:02:47</time>
+    最終更新：<time datetime="2018-10-24T07:48:58.590Z" itemprop="dateUpdated">2018-10-24 15:48:58</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/01/22/web-animations-api/" target="_blank" rel="external">http://yoursite.com/2018/01/22/web-animations-api/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/10/24/cordova/" target="_blank" rel="external">http://yoursite.com/2018/10/24/cordova/</a>
         
     </div>
     <footer>
@@ -232,21 +247,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/01/22/web-animation-api-tutorial1-creating-a-basic-animation/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">web-animation-api tutorial1: creating a basic animation</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/01/06/atan与atan2/" id="post-next" class="post-nav-link">
+      <a href="/2018/03/06/移动端知识点汇总/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">atan与atan2(译 wikipedia)</h4>
+        <h4 class="title">移动端知识点汇总</h4>
       </a>
     </div>
   

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-24T06:02:47.826Z</updated>
+  <updated>2018-10-24T07:48:58.590Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cordova</title>
+    <link href="http://yoursite.com/2018/10/24/cordova/"/>
+    <id>http://yoursite.com/2018/10/24/cordova/</id>
+    <published>2018-10-24T06:24:14.000Z</published>
+    <updated>2018-10-24T07:48:58.590Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Cordova初探"><a href="#Cordova初探" class="headerlink" title="Cordova初探"></a>Cordova初探</h1><h2 id="Cordova是什么？"><a href="#Cordova是什么？" class="headerlink" title="Cordova是什么？"></a>Cordova是什么？</h2><p>Apache Cordova是开源移动端开发框架。它允许你使用标准的web技术 – HTML5,CSS3和JavaScript来跨平台开发。应用在与针对各平台（android,ios等）的容器中运行，可以使用与标准兼容的API来访问各个设备（如传感器、网络状态等）</p><h2 id="Cordova的结构"><a href="#Cordova的结构" class="headerlink" title="Cordova的结构"></a>Cordova的结构</h2><p>cordova 应用由多个部分组成。如下图<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://cordova.apache.org/static/img/guide/cordovaapparchitecture.png" alt="" title="">                </div>                <div class="image-caption"></div>            </figure></p><h3 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h3><p>为应用提供所有用户接口，可以理解为浏览器</p><h3 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h3><p>即应用代码，html文件放在这里</p><h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>使得有能力通过js调用native code的能力</p><h2 id="安装搭建及遇到的问题"><a href="#安装搭建及遇到的问题" class="headerlink" title="安装搭建及遇到的问题"></a>安装搭建及遇到的问题</h2><p>1.全局安装cordova</p><p>npm install -g cordova </p><p>2.创建项目</p><p>cordova create hello com.example.hello HelloWorld</p><p>3.添加平台(以安卓为例)</p><p>cordova platform add android</p><p>4.环境检查</p><p>cordova requirements</p><p>问题：</p><p>a.Android SDK uninstalled</p><p>解决办法：下载android studio, 安装过程最好有vpn，这样不会有莫名其妙的问题</p><p>b.Android target问题</p><p>解决办法：在android studio中打开SDK Manager找到对应的target安装好</p><h2 id="生成App"><a href="#生成App" class="headerlink" title="生成App"></a>生成App</h2><p>cordova build</p><h2 id="Cordova-App更新问题"><a href="#Cordova-App更新问题" class="headerlink" title="Cordova App更新问题"></a>Cordova App更新问题</h2><p>可以使用cordova-hot-code-push-plugin热更新</p><p>使用方法：</p><p>1.添加插件： cordova plugin add cordova-hot-code-push-plugin</p><p>2.全局安装: npm install -g cordova-hot-code-push-cli</p><p>3.在服务器可访问路径下创建一个目录，比如：hotcode </p><p>4.在项目的根目录下新建一个cordova-hcp.json的文件添加以下内容</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Cordova初探&quot;&gt;&lt;a href=&quot;#Cordova初探&quot; class=&quot;headerlink&quot; title=&quot;Cordova初探&quot;&gt;&lt;/a&gt;Cordova初探&lt;/h1&gt;&lt;h2 id=&quot;Cordova是什么？&quot;&gt;&lt;a href=&quot;#Cordova是什么？&quot; c
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>移动端知识点汇总</title>
